@@ -37,3 +37,7 @@ python main.py [arg]
    
 # Пример выполнения
 
+![screenshot-1](https://github.com/NastyAnanasty/test_OK/blob/main/img/screenshot.png)
+
+![screenshot-2](https://github.com/NastyAnanasty/test_OK/blob/main/img/screenshot-2.png)
+
