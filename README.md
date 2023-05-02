@@ -37,4 +37,4 @@ docker run -i -t python-imbd
    
 # Пример выполнения
 
-![screenshot-1](https://github.com/NastyAnanasty/test_OK/blob/main/screenshot.png)
+![screenshot-1](https://github.com/NastyAnanasty/test_OK/blob/updated-algo/image.png)
