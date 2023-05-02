@@ -28,7 +28,7 @@ class ModifiedPredictor(PredictInterface):
 
     @staticmethod
     def find_user_like_artist(artist: str):
-        join_data = pd.read_parquet(r'join_data.parquet', engine='pyarrow')
+        join_data = pd.read_parquet(r'update_data/join_data.parquet', engine='pyarrow')
         max_scrob = join_data[join_data['artist_name'] == artist]['scrobbles'].max()
         user_id = join_data[(join_data['scrobbles'] == max_scrob) & (join_data['artist_name'] == artist)][
             'user_id'].values
@@ -36,7 +36,7 @@ class ModifiedPredictor(PredictInterface):
         return user_id
 
     def similar_user_predict(self, user_id: str, similar_users, artist: str):
-        normalise_data = pd.read_parquet(r'normalise_data.parquet', engine='pyarrow')
+        normalise_data = pd.read_parquet(r'update_data/normalise_data.parquet', engine='pyarrow')
         users_listen_artists = self.get_user_listen_artist(normalise_data, user_id, similar_users)
         item_score = {}
         similar_users = self.get_for_loop(user_id)
@@ -116,13 +116,13 @@ class SimilarMatrixPredictor(ModifiedPredictor):
 
 def createPredictor(alg_type: str) -> PredictInterface:
     if alg_type == ALGO_1:
-        return IndicesPredictor(r'indices_pearson.parquet')
+        return IndicesPredictor(r'update_data/indices_pearson.parquet')
     elif alg_type == ALGO_2:
-        return IndicesPredictor(r'indices_cosine.parquet')
+        return IndicesPredictor(r'update_data/indices_cosine.parquet')
     elif alg_type == ALGO_3:
-        return SimilarMatrixPredictor(r'cosine_data.parquet')
+        return SimilarMatrixPredictor(r'update_data/cosine_data.parquet')
     elif alg_type == ALGO_4:
-        return SimilarMatrixPredictor(r'pearson_corr_data.parquet')
+        return SimilarMatrixPredictor(r'update_data/pearson_corr_data.parquet')
 
 
 if __name__ == '__main__':
